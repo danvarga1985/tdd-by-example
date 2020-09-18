@@ -21,7 +21,9 @@ public class Money implements Expression {
         return new Money(amount, "CHF");
     }
 
-    public Money times(int multiplier) {
+    //Simple multiplier for the amount
+    @Override
+    public Expression times(int multiplier) {
         return new Money(amount * multiplier, this.currency);
     }
 
@@ -40,10 +42,13 @@ public class Money implements Expression {
                 '}';
     }
 
-    public Expression plus(Money addend) {
+    //Returns a new Sum that contains .this + the added money
+    @Override
+    public Expression plus(Expression addend) {
         return new Sum(this, addend);
     }
 
+    //Converts current amount to another currency value, and returs it on a new Money object
     @Override
     public Money reduce(Bank bank, String to) {
         return new Money(amount / bank.rate(this.currency, to), to);

@@ -2,6 +2,7 @@ package guru.springframework;
 
 import java.util.Objects;
 
+//Simple POJO used for currency conversion
 public class Pair {
 
     private final String from;
